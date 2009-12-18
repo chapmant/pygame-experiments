@@ -1,13 +1,17 @@
 #!/usr/bin/python
 
 import sys, pygame, random
+from  gem import Gem
 from pygame.locals import *
 
 def print_screen(gems, gemrects):
 	screen.fill(black)
 	for x in range(10):
 		for y in range(10):
-			screen.blit(gems[random.randint(0,3)], gemrects)
+#			screen.blit(gems[random.randint(0,3)], gemrects)
+			temp_gem = Gem.__init__(gems[random.randint(0,3)], gemrect)
+			gem_list.append(temp_gem)
+			gem_list[len(gem_list)].blit()
 			gemrect.left = gemrect.left + (50)
 		gemrect.top = gemrect.top + (50)
 		gemrect.left = 0
@@ -18,7 +22,7 @@ def move_right(mouse_pos):
 
 
 pygame.init()
-size = width, height = 640, 500
+size = width, height = 800, 520
 speed = [2, 2]
 black = 0, 0, 0
 
