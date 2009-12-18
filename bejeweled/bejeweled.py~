@@ -1,0 +1,37 @@
+#!/usr/bin/python
+
+import sys, pygame
+from pygame.locals import *
+pygame.init();
+
+def printScreen(gems, gemrects):
+	screen.fill(black)
+	for x in range(10):
+		for y in range(10):
+			screen.blit(gems, gemrects)
+			gemrect.left = gemrect.left + (50)
+		gemrect.top = gemrect.top + (50)
+		gemrect.left = 0
+
+size = width, height = 640, 480
+speed = [2, 2]
+black = 0, 0, 0
+
+screen = pygame.display.set_mode(size)
+
+gem = pygame.image.load("gem.png")
+gemrect = gem.get_rect()
+gemrect2 = gem.get_rect()
+gemrect2.left = gemrect2.left + 50 
+printScreen(gem, gemrect)
+
+while 1:
+	for event in pygame.event.get():
+		if event.type == pygame.QUIT: sys.exit()
+	
+#	screen.blit(gem, gemrect)
+#	screen.blit(gem, gemrect2)
+	pygame.display.flip()
+
+	
+
