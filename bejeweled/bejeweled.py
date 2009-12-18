@@ -1,27 +1,47 @@
 #!/usr/bin/python
 
-import sys, pygame
+import sys, pygame, random
 from pygame.locals import *
-pygame.init();
 
-size = width, height = 320, 240
+def print_screen(gems, gemrects):
+	screen.fill(black)
+	for x in range(10):
+		for y in range(10):
+			screen.blit(gems[random.randint(0,3)], gemrects)
+			gemrect.left = gemrect.left + (50)
+		gemrect.top = gemrect.top + (50)
+		gemrect.left = 0
+
+def move_right(mouse_pos):
+	column = mouse_pos[0] / 50
+	row = mouse_pos[1] / 50
+
+
+pygame.init()
+size = width, height = 640, 500
 speed = [2, 2]
 black = 0, 0, 0
 
 screen = pygame.display.set_mode(size)
 
-gem = pygame.image.load("gem.png")
-gemrect = gem.get_rect()
-gemrect2 = gem.get_rect()
-gemrect2.left = gemrect2.left + 50 
+gem0 = pygame.image.load("gem0.png").convert()
+gem1 = pygame.image.load("gem1.png").convert()
+gem2 = pygame.image.load("gem2.png").convert()
+gem3 = pygame.image.load("gem3.png").convert()
 
-print gemrect
+gem_list = [gem0, gem1, gem2, gem3]
+
+gemrect = gem0.get_rect()
+#gemrect2 = gem.get_rect()
+#gemrect2.left = gemrect2.left + 50 
+print_screen(gem_list, gemrect)
 
 while 1:
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT: sys.exit()
+		elif event.type == pygame.MOUSEBUTTONDOWN:
+			move_right(pygame.mouse.get_pos())	
 
-	screen.fill(black)
-	screen.blit(gem, gemrect)
-	screen.blit(gem, gemrect2)
+#	screen.blit(gem, gemrect)
+#	screen.blit(gem, gemrect2)
 	pygame.display.flip()
