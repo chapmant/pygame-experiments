@@ -13,3 +13,5 @@ class Gem:
 		row = board_row
 	def blit():
 		screen.blit(self.gem, self.gem_rect)
+	def get_gem():
+		return self.gem
