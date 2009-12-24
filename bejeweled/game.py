@@ -5,7 +5,7 @@ from board import GameBoard
 
 class Game:
 	black = (100,100,100)
-	game_rect = [0, 0, 300, 200]
+	game_rect = [0, 0, 1000, 500]
 	board = GameBoard(10,10, .9 * game_rect[3])
 	def __init__(self):
 		pygame.init()

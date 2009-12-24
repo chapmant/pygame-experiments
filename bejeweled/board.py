@@ -29,15 +29,19 @@ class GameBoard:
 		# Get the rectangle of the gems
 		rect = gem_0.get_rect()
 		i = 0
-		for row in range(0,self.size[0]/25):
-			for column in range(0,self.size[1]/25):
+		max_rows = self.size[0] / 50
+		max_columns = self.size[1] / 50
+		row_spacing = self.size[0] / max_columns
+		column_spacing = self.size[1] / max_rows
+		for row in range(0, max_rows):
+			for column in range(0, max_columns):
 				# Appends a newly generated Gem to the list of gems
 				self.gems.append(Gem(gem_list[random.randint(0,3)], rect))
 				# Blits the new Gem to the screen.
 				self.board.blit(self.gems[i].gem, self.gems[i].rect)
 				# Shifts the rectangle set by one width.
-				rect.left += 50
+				rect.left += row_spacing
 				i += 1
 			# Resets the Gem rectangle to the left, moves down a line.
 			rect.left = 0
-			rect.top += 50
+			rect.top += column_spacing
