@@ -23,27 +23,32 @@ class GameBoard:
 
 	def set_gems(self):
 		# Load the gem images
-		gem_0 = pygame.image.load("gem0.png")
-		gem_1 = pygame.image.load("gem1.png")
-		gem_2 = pygame.image.load("gem2.png")
-		gem_3 = pygame.image.load("gem3.png")
-		gem_list = [gem_0, gem_1, gem_2, gem_3]
+	#	gem_0 = pygame.image.load("gem0.png")
+	#	gem_1 = pygame.image.load("gem1.png")
+	#	gem_2 = pygame.image.load("gem2.png")
+	#	gem_3 = pygame.image.load("gem3.png")
+	#	gem_list = [gem_0, gem_1, gem_2, gem_3]
+		gem_list = [pygame.image.load("gem0.png"), 
+				pygame.image.load("gem1.png"), 
+				pygame.image.load("gem2.png"), 
+				pygame.image.load("gem3.png")]
 
 		# Get the rectangle of the gems
-		rect = gem_0.get_rect()
+		rect = gem_list[0].get_rect()
 		i = 0
-		max_rows = self.size[0] / 50
-		max_columns = self.size[1] / 50
+		max_rows = int(self.size[0] / 50)
+		max_columns = int(self.size[1] / 50)
 		row_spacing = self.size[0] / max_columns
 		column_spacing = self.size[1] / max_rows
 
 		for row in range(0, max_rows):
+			self.gems.append([])
 			for column in range(0, max_columns):
 				# Appends a newly generated Gem to the list of gems
-				self.gems.append(Gem(gem_list[random.randint(0,3)], rect))
+				self.gems[row].append(Gem(gem_list[random.randint(0,3)], rect))
 
 				# Blits the new Gem to the screen.
-				self.board.blit(self.gems[i].gem, self.gems[i].rect)
+				self.board.blit(self.gems[row][column].gem, self.gems[row][column].rect)
 
 				# Shifts the rectangle set by one width.
 				rect.left += row_spacing
