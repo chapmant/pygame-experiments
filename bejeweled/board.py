@@ -55,8 +55,8 @@ class GameBoard:
 	def switch_gems(self, event):
 		print event.pos
 		print event.button
-		x = event.pos[0]
-		y = event.pos[1]
+		y = event.pos[0]
+		x = event.pos[1]
 		location = [x, y]
 		location[0] -= self.size[0] / 18
 		location[1] -= self.size[1] / 18
@@ -82,7 +82,7 @@ class GameBoard:
 				#print row
 				#print column
 				print rect, rect.left, rect.top, rect.bottom, rect.right, self.gems[row][column].rect
-				self.gems[row][column].rect = rect
+				#self.gems[row][column].rect = rect
 				self.board.blit(self.gems[row][column].gem, self.gems[row][column].rect)
 				rect.left += 50
 			rect.left = 0
