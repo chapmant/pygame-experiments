@@ -23,11 +23,6 @@ class GameBoard:
 
 	def set_gems(self):
 		# Load the gem images
-	#	gem_0 = pygame.image.load("gem0.png")
-	#	gem_1 = pygame.image.load("gem1.png")
-	#	gem_2 = pygame.image.load("gem2.png")
-	#	gem_3 = pygame.image.load("gem3.png")
-	#	gem_list = [gem_0, gem_1, gem_2, gem_3]
 		gem_list = [pygame.image.load("gem0.png"), 
 				pygame.image.load("gem1.png"), 
 				pygame.image.load("gem2.png"), 
@@ -52,8 +47,43 @@ class GameBoard:
 
 				# Shifts the rectangle set by one width.
 				rect.left += row_spacing
-				i += 1
 
 			# Resets the Gem rectangle to the left, moves down a line.
 			rect.left = 0
 			rect.top += column_spacing
+
+	def switch_gems(self, event):
+		print event.pos
+		print event.button
+		x = event.pos[0]
+		y = event.pos[1]
+		location = [x, y]
+		location[0] -= self.size[0] / 18
+		location[1] -= self.size[1] / 18
+		print location
+		if location[0] < self.size[0] and location[1] < self.size[1] and location[0] > 0 and location[1] > 0:
+			print "in bounds!"
+			location[0] = int(location[0] / 50)
+			location[1] = int(location[1] / 50)
+			temp_gem_1 = self.gems[location[0]][location[1]]
+			if location[0] < len(self.gems[location[0]]):
+				temp_gem_2 = self.gems[location[0]][location[1]+1]
+				self.gems[location[0]][location[1]] = self.gems[location[0]][location[1]+1]
+				self.gems[location[0]][location[1]].rect = temp_gem_1.rect
+				self.gems[location[0]][location[1]+1] = temp_gem_1
+				self.gems[location[0]][location[1]+1].rect = temp_gem_2.rect
+		self.board.fill((123,123,123))
+		rect = self.gems[0][0].rect
+		rect.left = 0
+		rect.top = 0
+		for row in range(0, len(self.gems)):
+			for column in range(0, len(self.gems[0])):
+				#print self.gems[row][column]
+				#print row
+				#print column
+				print rect, rect.left, rect.top, rect.bottom, rect.right, self.gems[row][column].rect
+				self.gems[row][column].rect = rect
+				self.board.blit(self.gems[row][column].gem, self.gems[row][column].rect)
+				rect.left += 50
+			rect.left = 0
+			rect.top += 50

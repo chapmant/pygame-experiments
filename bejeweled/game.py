@@ -30,7 +30,9 @@ class Game:
 				if event.type == pygame.QUIT:
 					sys.exit()
 				elif event.type == pygame.MOUSEBUTTONDOWN:
-					print "Mouse clicked."
+			#		print "Mouse clicked."
+					if event.button == 1:
+						self.board.switch_gems(event)
 
 			# Clears the screen, blits the board and refreshes the screen.
 			self.screen.fill(self.black)
