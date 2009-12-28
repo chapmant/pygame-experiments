@@ -42,6 +42,7 @@ class GameBoard:
 			self.gems.append([])
 			# then for each column in the map...
 			for column in range(0, max_columns):
+
 				# Appends a newly generated Gem to the list of gems
 				self.gems[row].append(Gem(gem_list[random.randint(0,3)], rect))
 
@@ -72,8 +73,7 @@ class GameBoard:
 
 		# If the location is in the bounds of the board...
 		if location[0] < self.size[0] and location[1] < self.size[1] and location[0] > 0 and location[1] > 0:
-			#print "in bounds!"
-			
+
 			# Compute the row and column of the click
 			location[0] = int(location[0] / 50)
 			location[1] = int(location[1] / 50)
@@ -104,11 +104,6 @@ class GameBoard:
 		# For each gem in the board...
 		for row in range(0, len(self.gems)):
 			for column in range(0, len(self.gems[0])):
-				#print self.gems[row][column]
-				#print row
-				#print column
-				#print rect, rect.left, rect.top, rect.bottom, rect.right, self.gems[row][column].rect
-				#self.gems[row][column].rect = rect
 
 				# Blit the gem to the board
 				self.board.blit(self.gems[row][column].gem, self.gems[row][column].rect)
